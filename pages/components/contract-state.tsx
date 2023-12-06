@@ -13,9 +13,6 @@ import ethereumIcon from '../assets/ethereum.svg';
 const StyledPaper = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(2),
   margin: theme.spacing(2),
-  '&:hover': {
-    backgroundColor: theme.palette.action.hover,
-  },
 }));
 
 const HeaderContainer = styled('div')({
@@ -59,9 +56,12 @@ const CountdownContainer = styled(Grid)({
   fontWeight: 400
 })
 
-const StyledRow = styled(Grid)({
-  justifyContent: 'space-between'
-})
+const StyledRow = styled(Grid)(({ theme }) => ({
+  justifyContent: 'space-between',
+  '&:hover': {
+    backgroundColor: theme.palette.action.hover,
+  },
+}));
 
 const LoaderContainer = styled(Grid)({
   display: 'flex',
