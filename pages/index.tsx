@@ -25,7 +25,6 @@ const ContractStatesContainer = styled(Grid)({
   alignItems: 'center',
   justifyContent: 'center',
   textAlign: 'center',
-  flexWrap: 'no-wrap',
   zIndex: 1,
 });
 
@@ -35,7 +34,6 @@ const ConnectButtonContainer = styled(Grid)({
   alignItems: 'center',
   justifyContent: 'center',
   textAlign: 'center',
-  flexWrap: 'no-wrap',
   margin: '2rem 0',
   zIndex: 1,
 });
