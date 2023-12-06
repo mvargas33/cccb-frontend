@@ -22,6 +22,8 @@ const MainContainer = styled(Grid)({
 const ContractStatesContainer = styled(Grid)({
   display: 'flex',
   width: '100%',
+  flexWrap: 'wrap',
+  gap: '1rem',
   alignItems: 'center',
   justifyContent: 'center',
   textAlign: 'center',
@@ -87,7 +89,6 @@ const particlesLoaded = useCallback(async (container: Container | undefined) => 
 
   return (
     <MainContainer>
-      
         <MainTitleContainer>
           <MainTitle>Save up to 50% in bridges</MainTitle>
           <Subtitle>Thanks to Chainlink CCIP</Subtitle>

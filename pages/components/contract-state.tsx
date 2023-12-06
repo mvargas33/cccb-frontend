@@ -11,8 +11,12 @@ import ethereumIcon from '../assets/avax.svg';
 
 
 const StyledPaper = styled(Paper)(({ theme }) => ({
+  display: 'flex',
+  flexDirection: 'column',
+  flexGrow: 1,
   padding: theme.spacing(2),
   margin: theme.spacing(2),
+  maxWidth: '30rem',
 }));
 
 const HeaderContainer = styled('div')({
@@ -39,11 +43,16 @@ const StyledDivider = styled(Divider)({
 });
 
 const Name = styled('span')({
+  display: 'flex',
+  justifyContent: 'flex-start',
   fontWeight: 'bold',
+  flexGrow: 1,
 });
 
 const StyledContainer = styled(Grid)({
-  minWidth: '30rem'
+  width: '100%',
+  // minWidth: '20rem',
+  // maxWidth: '30rem',
 })
 
 const CountdownContainer = styled(Grid)({
@@ -57,6 +66,9 @@ const CountdownContainer = styled(Grid)({
 })
 
 const StyledRow = styled(Grid)(({ theme }) => ({
+  display: 'flex',
+  width: '100%',
+  flexGrow: 1,
   justifyContent: 'space-between',
   '&:hover': {
     backgroundColor: theme.palette.action.hover,
