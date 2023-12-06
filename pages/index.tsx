@@ -92,7 +92,7 @@ const particlesLoaded = useCallback(async (container: Container | undefined) => 
       
         <MainTitleContainer>
           <MainTitle>Save up to 50% in bridges</MainTitle>
-          <Subtitle>With SharedBridge</Subtitle>
+          <Subtitle>Thanks to Chainlink CCIP</Subtitle>
         </MainTitleContainer>
         <Divider/>
         <ConnectButtonContainer>
