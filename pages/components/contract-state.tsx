@@ -7,7 +7,7 @@ import {
   CircularProgress
 } from '@mui/material';
 import Image from 'next/image';
-import ethereumIcon from '../assets/ethereum.svg';
+import ethereumIcon from '../assets/avax.svg';
 
 
 const StyledPaper = styled(Paper)(({ theme }) => ({
@@ -31,7 +31,7 @@ const ImageTitleContainer = styled('div')({
   justifyContent: 'flex-start',
   fontSize: '1.2rem',
   fontWeight: 'bold',
-  height: '3rem'
+  height: '3rem',
 });
 
 const StyledDivider = styled(Divider)({
@@ -121,7 +121,9 @@ const ContractState = () => {
           <Image
             src={ethereumIcon}
             alt="Blockchain Icon"
-            height={50}
+            height={40}
+            width={40}
+            style={{ marginRight: '0.8rem'}}
           />
           <span>Contract in Sepolia</span>
         </ImageTitleContainer>
