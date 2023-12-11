@@ -6,17 +6,13 @@ import { configureChains, createConfig, WagmiConfig } from 'wagmi';
 import {
   sepolia,
   avalancheFuji,
-  polygonMumbai,
-  mainnet,
-  polygon,
 } from 'wagmi/chains';
 import { publicProvider } from 'wagmi/providers/public';
 
 const { chains, publicClient, webSocketPublicClient } = configureChains(
   [
-    mainnet,
-    polygon,
-    ...(process.env.NEXT_PUBLIC_ENABLE_TESTNETS === 'true' ? [sepolia, avalancheFuji, polygonMumbai] : []),
+    sepolia,
+    avalancheFuji,
   ],
   [publicProvider()]
 );
