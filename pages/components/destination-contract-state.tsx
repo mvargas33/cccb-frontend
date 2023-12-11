@@ -8,11 +8,12 @@ import {
   Button
 } from '@mui/material';
 import Image from 'next/image';
-import ethereumIcon from '../assets/ethereum.svg';
-import { useApproveBridge, useGetContractState, useDeposit } from '../../integrations/source-cccb/hooks';
+import avaxIcon from '../assets/avax.svg';
 import useBridge from '../../integrations/source-cccb/hooks/use-bridge';
 import TransactionReview from './transaction-review';
-import { sepoliaChainId, sourceCCCBSepoliaAddress } from '../../integrations/source-cccb/constants';
+import { destinationCCCBFujiAddress, fujiChainId } from '../../integrations/source-cccb/constants';
+import { useDistributeFunds } from '../../integrations/destination-cccb/hooks';
+import useGetContractState from '../../integrations/destination-cccb/hooks/use-get-contract-state';
 import { useChainId } from 'wagmi';
 
 
@@ -57,8 +58,6 @@ const Name = styled('span')({
 
 const StyledContainer = styled(Grid)({
   width: '100%',
-  // minWidth: '20rem',
-  // maxWidth: '30rem',
 })
 
 const CountdownContainer = styled(Grid)({
@@ -97,22 +96,19 @@ const CustomText = styled('span')<CustomTextProps>(({ theme, textColor }) => ({
   color: textColor,
 }));
 
-const SourceContractState = () => {
+const DestinationContractState = () => {
   const network = useChainId();
-  const isSepoliaNetwork = network === sepoliaChainId;
+  const isFujiNetwork = network === fujiChainId;
 
   const {
     contractState,
     tokenAddress,
+    tokenBalance,
     destinationChainSelector,
     destinationContract,
     currentRoundId,
     currentTokenAmount,
     currentRound,
-    depositTax,
-    protocolReward,
-    callerReward,
-    tokenBalance,
     refetch,
   } = useGetContractState();
 
@@ -122,23 +118,7 @@ const SourceContractState = () => {
     isSuccess,
     isLoading,
     data,
-  } = useBridge();
-
-  const {
-    errors: depositErrors,
-    sendTransaction: sendDeposit,
-    isSuccess: isDepositSuccess,
-    isLoading: isDepositLoading,
-    data: depositData,
-  } = useDeposit({ tax: depositTax });
-
-  const {
-    errors: approveErrors,
-    sendTransaction: sendApprove,
-    isSuccess: isApproveSuccess,
-    isLoading: isApproveLoading,
-    data: approveData,
-  } = useApproveBridge({ tax: depositTax });
+  } = useDistributeFunds();
   
   const [countdown, setCountdown] = useState(5);
   const [loading, setLoading] = useState(false);
@@ -163,7 +143,7 @@ const SourceContractState = () => {
   }, [countdown, refetch]);
   
   const infoData = [
-    { title: 'Contract', value: sourceCCCBSepoliaAddress},
+    { title: 'Contract', value: destinationCCCBFujiAddress},
     { title: 'BnP', value: tokenAddress },
     { title: 'BnP balance', value: tokenBalance },
     { title: 'Contract State', value: contractState },
@@ -173,9 +153,9 @@ const SourceContractState = () => {
     { title: 'Token amout raised', value: currentTokenAmount },
     { title: 'Number of Participants', value: currentRound.participants.length },
     
-    { title: 'Deposit tax (ETH)', value: depositTax },
-    { title: 'Protocol reward (ETH)', value: protocolReward },
-    { title: 'Caller reward (ETH)', value: callerReward },
+    // { title: 'Deposit tax (ETH)', value: depositTax },
+    // { title: 'Protocol reward (ETH)', value: protocolReward },
+    // { title: 'Caller reward (ETH)', value: callerReward },
   ];
 
   return (
@@ -183,13 +163,13 @@ const SourceContractState = () => {
       <HeaderContainer>
         <ImageTitleContainer>
           <Image
-            src={ethereumIcon}
+            src={avaxIcon}
             alt="Blockchain Icon"
             height={40}
             width={40}
             style={{ marginRight: '0.8rem'}}
           />
-          <span>Contract in Sepolia</span>
+          <span>Contract in Fuji</span>
         </ImageTitleContainer>
         <CountdownContainer container direction="column">
         {loading ? (
@@ -200,9 +180,6 @@ const SourceContractState = () => {
         ) : (
             <span>{`Refreshing in ${countdown}s`}</span>
         )}
-        {/* {countdown === 1 && !loading && (
-            <span>Fetching data...</span>
-        )} */}
         </CountdownContainer>
       </HeaderContainer>
       
@@ -211,7 +188,7 @@ const SourceContractState = () => {
         {infoData.map((info, index) => (
           <StyledRow item key={index} container alignItems="center">
             <Name>{info.title}</Name>
-            <CustomText textColor={info.title === 'Contract State' ? (info.value === 'LOCKED' ? 'red' : 'green') : 'inherit'}>{info.value}</CustomText>
+            <CustomText textColor={info.title === 'Contract State' ? (info.value === 'BLOCKED' ? 'red' : 'green') : 'inherit'}>{info.value}</CustomText>
           </StyledRow>
         ))}
       </StyledContainer>
@@ -225,40 +202,20 @@ const SourceContractState = () => {
           </StyledRow>
         ))}
       </StyledContainer>
-      {isSepoliaNetwork &&
-      <>
-      <StyledDivider/>
-      <TransactionReview
-        errors={approveErrors}
-        sendTransaction={sendApprove}
-        isSuccess={isApproveSuccess}
-        isLoading={isApproveLoading}
-        txHash={approveData?.hash}
-        buttonText="Approve"
-        titleText="Approve for 1000 wei of BnP"
-      />
-      <TransactionReview
-        errors={depositErrors}
-        sendTransaction={sendDeposit}
-        isSuccess={isDepositSuccess}
-        isLoading={isDepositLoading}
-        txHash={depositData?.hash}
-        buttonText="Deposit"
-        titleText="Deposit 100 wei of BnP"
-      />
+      {isFujiNetwork && <>
+      <StyledDivider />
       <TransactionReview
         errors={errors}
         sendTransaction={sendTransaction}
         isSuccess={isSuccess}
         isLoading={isLoading}
         txHash={data?.hash}
-        buttonText="Bridge all"
-        titleText="Bridge"
+        buttonText="Distribute funds"
+        titleText="Distribute"
       />
-      </>
-}
+      </>}
     </StyledPaper>
   );
 };
 
-export default SourceContractState;
+export default DestinationContractState;

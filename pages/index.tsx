@@ -9,6 +9,7 @@ import { loadSlim } from "tsparticles-slim"; // if you are going to use `loadSli
 import { useCallback } from 'react';
 import chartImage from './assets/chart.png';
 import Image from 'next/image'
+import DestinationContractState from './components/destination-contract-state';
 
 const SourceContractState = dynamic(() => import('./components/source-contract-state'), { ssr: false })
  
@@ -29,7 +30,7 @@ const ContractStatesContainer = styled(Grid)({
   width: '100%',
   flexWrap: 'wrap',
   gap: '1rem',
-  alignItems: 'center',
+  alignItems: 'flex-start',
   justifyContent: 'center',
   textAlign: 'center',
   zIndex: 1,
@@ -139,7 +140,7 @@ const particlesLoaded = useCallback(async (container: Container | undefined) => 
         </ConnectButtonContainer>
         <ContractStatesContainer>
           <SourceContractState/>
-          <ContractState/>
+          <DestinationContractState/>
         </ContractStatesContainer>
         <ParticleBackground
             id="tsparticles"
