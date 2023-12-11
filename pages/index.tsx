@@ -47,6 +47,7 @@ const ConnectButtonContainer = styled(Grid)({
 });
 
 const MainTitleContainer = styled('div')({
+  justifyContent: 'center',
   display: 'flex',
   flexDirection: 'row',
   flexWrap: 'wrap',
