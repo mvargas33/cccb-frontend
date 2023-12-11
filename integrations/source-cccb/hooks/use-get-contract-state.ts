@@ -33,7 +33,6 @@ interface UseGetContractStateResponse {
 const useGetContractState = (): UseGetContractStateResponse => {
   const commonParams: UseContractReadConfig = {
     address: sourceCCCBSepoliaAddress,
-    abi: sourceCCCBAbi,
     chainId: sepoliaChainId,
     watch: false,
     enabled: false,
@@ -47,6 +46,7 @@ const useGetContractState = (): UseGetContractStateResponse => {
     refetch: contractStateRefetch,
   } = useContractRead({
     ...commonParams,
+    abi: sourceCCCBAbi,
     functionName: 'getContractState',
   });
 
@@ -56,6 +56,7 @@ const useGetContractState = (): UseGetContractStateResponse => {
     refetch: tokenAddressRefetch,
   } = useContractRead({
     ...commonParams,
+    abi: sourceCCCBAbi,
     functionName: 'getTokenAddress',
   });
 
@@ -65,6 +66,7 @@ const useGetContractState = (): UseGetContractStateResponse => {
     refetch: destinationChainSelectorRefetch,
   } = useContractRead({
     ...commonParams,
+    abi: sourceCCCBAbi,
     functionName: 'getDestinationChainSelector',
   });
 
@@ -74,6 +76,7 @@ const useGetContractState = (): UseGetContractStateResponse => {
     refetch: destinationContractRefetch,
   } = useContractRead({
     ...commonParams,
+    abi: sourceCCCBAbi,
     functionName: 'getDestinationContract',
   });
 
@@ -83,6 +86,7 @@ const useGetContractState = (): UseGetContractStateResponse => {
     refetch: currentRoundIdRefetch,
   } = useContractRead({
     ...commonParams,
+    abi: sourceCCCBAbi,
     functionName: 'getCurrentRoundId',
   });
 
@@ -92,6 +96,7 @@ const useGetContractState = (): UseGetContractStateResponse => {
     refetch: currentTokenAmountRefetch,
   } = useContractRead({
     ...commonParams,
+    abi: sourceCCCBAbi,
     functionName: 'getCurrentTokenAmount',
   });
 
@@ -101,6 +106,7 @@ const useGetContractState = (): UseGetContractStateResponse => {
     refetch: currentRoundRefetch,
   } = useContractRead({
     ...commonParams,
+    abi: sourceCCCBAbi,
     functionName: 'getCurrentRound',
   });
 
@@ -110,6 +116,7 @@ const useGetContractState = (): UseGetContractStateResponse => {
     refetch: depositTaxRefetch,
   } = useContractRead({
     ...commonParams,
+    abi: sourceCCCBAbi,
     functionName: 'getDepositTax',
   });
 
@@ -119,6 +126,7 @@ const useGetContractState = (): UseGetContractStateResponse => {
     refetch: estimatedRewardsRefetch,
   } = useContractRead({
     ...commonParams,
+    abi: sourceCCCBAbi,
     functionName: 'getEstimatedRewards',
   });
 
@@ -128,6 +136,7 @@ const useGetContractState = (): UseGetContractStateResponse => {
     refetch: tokenBalanceRefetch,
   } = useContractRead({
     ...commonParams,
+    abi: sourceCCCBAbi,
     functionName: 'getContractTokenBalance',
   });
 
