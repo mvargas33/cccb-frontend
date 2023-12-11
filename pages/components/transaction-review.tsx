@@ -140,6 +140,9 @@ function TransactionReview({
           reason = String(error).match(/reason:\s*([\s\S]*?)\s*Contract Call/);
           if (reason){
             finalMessages = [...finalMessages, capitalFirstLetter(reason[0])];
+          } else {
+            reason = String(error).split('.')[0];
+            finalMessages = [...finalMessages, capitalFirstLetter(reason)];
           }
         } else if (
           typeof error === 'object'
