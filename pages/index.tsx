@@ -123,11 +123,11 @@ const particlesLoaded = useCallback(async (container: Container | undefined) => 
         <MainTitleContainer>
           <MainTitle>Save up to 80% in bridges</MainTitle>
           <Subtitle>Thanks to Chainlink CCIP</Subtitle>
-          <Subtitle style={{ marginTop: '7rem'}}>Bridge with other participants in one CCIP transaction, to save gas. A normal CCIP bridge cost around 235,000 gas, but using this protocol, you can pay as lowe as 45,000 gas</Subtitle>
+          <Subtitle style={{ marginTop: '7rem'}}>A normal CCIP bridge cost around 235,000 gas, but using this protocol, you can pay as lowe as 45,000 gas</Subtitle>
           <ImageContainer>
             <Image src={chartImage} alt="Chart"/>
           </ImageContainer>
-          <Subtitle>The more the participants, the lower the gas fee. </Subtitle>
+          <Subtitle>Bridge with others in a queue, trade gas for time: the more the participants, the lower the gas fee. </Subtitle>
           <ul>
           <StyledLy>With 14 participants, you pay 65,000 gas (shown as triangle in the chart). The cost of bridge equals the cost of an ERC20 transfer!</StyledLy>
           <StyledLy>With 19 participants, you pay 60,000 gas (shown as square in the chart)</StyledLy>
@@ -151,7 +151,7 @@ const particlesLoaded = useCallback(async (container: Container | undefined) => 
                 fullScreen: true,
                 background: {
                     color: {
-                        value: "#111111",
+                        value: "#05111e",
                     },
                 },
                 fpsLimit: 120,

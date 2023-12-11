@@ -117,7 +117,6 @@ function TransactionReview({
     data: gasData,
     isLoading: gasIsLoading,
   } = useFeeData();
-
   const {
     chain,
   } = useNetwork();
@@ -139,9 +138,11 @@ function TransactionReview({
         if (typeof error === 'string'){
           reason = String(error).match(/reason:\s*([\s\S]*?)\s*Contract Call/);
           if (reason){
-            finalMessages = [...finalMessages, capitalFirstLetter(reason[0])];
+            reason = String(reason[0]).replace("Contract Call", '');
+            finalMessages = [...finalMessages, capitalFirstLetter(reason)];
           } else {
             reason = String(error).split('.')[0];
+            reason = String(reason).replace("Contract Call", '');
             finalMessages = [...finalMessages, capitalFirstLetter(reason)];
           }
         } else if (

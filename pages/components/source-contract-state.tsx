@@ -140,12 +140,12 @@ const SourceContractState = () => {
     data: approveData,
   } = useApproveBridge({ tax: depositTax });
   
-  const [countdown, setCountdown] = useState(5);
+  const [countdown, setCountdown] = useState(3);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const countdownInterval = setInterval(() => {
-      setCountdown((prevCountdown) => (prevCountdown > 0 ? prevCountdown - 1 : 5));
+      setCountdown((prevCountdown) => (prevCountdown > 0 ? prevCountdown - 1 : 3));
     }, 1000);
 
     return () => clearInterval(countdownInterval);

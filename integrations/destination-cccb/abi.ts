@@ -96,7 +96,7 @@ const abi = [
   },
   {
     type: "function",
-    name: "currentRound",
+    name: "currentRoundId",
     inputs: [],
     outputs: [
       {
@@ -188,6 +188,29 @@ const abi = [
         name: "",
         type: "uint256",
         internalType: "uint256"
+      }
+    ],
+    stateMutability: "view"
+  },
+  {
+    type: "function",
+    name: "getCurrentRoundTokenRealBalances",
+    inputs: [],
+    outputs: [
+      {
+        name: "_participants",
+        type: "address[]",
+        internalType: "address[]"
+      },
+      {
+        name: "_pendingBalances",
+        type: "uint256[]",
+        internalType: "uint256[]"
+      },
+      {
+        name: "_realTokenBalances",
+        type: "uint256[]",
+        internalType: "uint256[]"
       }
     ],
     stateMutability: "view"
@@ -569,6 +592,6 @@ const abi = [
       }
     ]
   }
-]
+];
 
 export default abi;
