@@ -1,12 +1,16 @@
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import type { NextPage } from 'next';
 import ContractState from './components/contract-state';
+import dynamic from 'next/dynamic'
 import { Divider, Grid, styled } from '@mui/material';
 import Particles from "react-tsparticles";
 import type { Container, Engine } from "tsparticles-engine";
 import { loadSlim } from "tsparticles-slim"; // if you are going to use `loadSlim`, install the "tsparticles-slim" package too.
 import { useCallback } from 'react';
+import { useGetContractState } from '../integrations/source-cccb/hooks';
 
+const SourceContractState = dynamic(() => import('./components/source-contract-state'), { ssr: false })
+ 
 
 const MainContainer = styled(Grid)({
   display: 'flex',
@@ -74,7 +78,6 @@ const ParticleBackground = styled(Particles)({
 
 const Home: NextPage = () => {
   const particlesInit = useCallback(async (engine: Engine) => {
-    console.log(engine);
 
     // you can initialize the tsParticles instance (engine) here, adding custom shapes or presets
     // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
@@ -98,7 +101,7 @@ const particlesLoaded = useCallback(async (container: Container | undefined) => 
           <ConnectButton />
         </ConnectButtonContainer>
         <ContractStatesContainer>
-          <ContractState/>
+          <SourceContractState/>
           <ContractState/>
         </ContractStatesContainer>
         <ParticleBackground
