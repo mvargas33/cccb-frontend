@@ -211,7 +211,7 @@ const SourceContractState = () => {
         {infoData.map((info, index) => (
           <StyledRow item key={index} container alignItems="center">
             <Name>{info.title}</Name>
-            <CustomText textColor={info.title === 'Contract State' ? (info.value === 'LOCKED' ? 'red' : 'green') : 'inherit'}>{info.value}</CustomText>
+            <CustomText textColor={info.title === 'Contract State' ? (info.value === 'BLOCKED' ? 'red' : 'green') : 'inherit'}>{info.value}</CustomText>
           </StyledRow>
         ))}
       </StyledContainer>
